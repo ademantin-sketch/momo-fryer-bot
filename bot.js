@@ -149,8 +149,6 @@ ${isFri ? "Сегодня пятница — масло должно быть С
 
 // ─── PHOTO HANDLER ─────────────────────────────────────────────────────────
 bot.on("photo", async (msg) => {
-  // Принимаем фото только из нашей группы
-  if (msg.chat.id.toString() !== GROUP_CHAT_ID.toString()) return;
 
   const chatId = msg.chat.id;
   const caption = msg.caption || "";
@@ -203,7 +201,6 @@ bot.on("photo", async (msg) => {
 
 // ─── COMMANDS ──────────────────────────────────────────────────────────────
 bot.onText(/\/start/, (msg) => {
-  if (msg.chat.id.toString() !== GROUP_CHAT_ID.toString()) return;
   bot.sendMessage(
     msg.chat.id,
     `🛢 *Бот контроля масла MOMO активен!*\n\n` +
@@ -217,7 +214,6 @@ bot.onText(/\/start/, (msg) => {
 });
 
 bot.onText(/\/status/, (msg) => {
-  if (msg.chat.id.toString() !== GROUP_CHAT_ID.toString()) return;
   const now = new Date().toLocaleString("ru-RU", { timeZone: "Europe/Chisinau" });
   bot.sendMessage(
     msg.chat.id,
@@ -228,12 +224,10 @@ bot.onText(/\/status/, (msg) => {
 
 // /test — для проверки напоминаний вручную (удали после настройки)
 bot.onText(/\/testmorning/, (msg) => {
-  if (msg.chat.id.toString() !== GROUP_CHAT_ID.toString()) return;
   sendMorningReminder();
 });
 
 bot.onText(/\/testafternoon/, (msg) => {
-  if (msg.chat.id.toString() !== GROUP_CHAT_ID.toString()) return;
   sendAfternoonReminder();
 });
 
